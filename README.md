@@ -20,18 +20,19 @@ Note that this pipeline applies to stratification versions starting with v3.2.
 Older pipelines and scripts can be found
 [here](https://github.com/genome-in-a-bottle/genome-stratifications).
 
-Within this repository, further details (including all source files) can
-be found in the configuration at `config/all.yml`. The pipeline itself is
+Within this repository, further details (including all source files) can be
+found in the configuration at `config/all.yml`. The pipeline itself is
 maintained in a separate, reference agnostic repository
-[here](https://github.com/ndwarshuis/giab-strats-smk). Please refer to this
-pipeline for specific, methodological information regarding how these files are 
-produced.
+[here](https://github.com/usnistgov/giab-stratifications-pipeline). Please refer
+to this pipeline for specific, methodological information regarding how these
+files are produced.
 
 Currently, this pipeline is set up to build stratifications for the following
 references:
 * GRCh37
 * GRCh38
 * CHM13
+* HG002 (Q100 diploid assembly)
 
 ## Versioning
 
@@ -43,7 +44,7 @@ versions located in [the FTP
 site](https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/).
 
 For those looking for precise differences between each stratification version,
-see [the stratdiff tool](https://github.com/ndwarshuis/giab-stratdiff).
+see [the stratdiff tool](https://github.com/usnistgov/giab-stratdiff).
 
 ## General Information
 
@@ -208,7 +209,7 @@ options. Both require cloning this repo with submodules and setting up the
 conda env:
 
 ```
-git clone --recurse-submodules https://github.com/ndwarshuis/giab-stratifications.git
+git clone --recurse-submodules https://github.com/usnistgov/giab-stratifications.git
 cd giab-stratifications
 conda env create -f env.yml
 conda activate giab-strats-production
