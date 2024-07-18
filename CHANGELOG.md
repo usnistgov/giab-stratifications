@@ -97,7 +97,7 @@ This:
 
 was renamed to:
 
-* `GRCh3X_HG00Y_v4.2.1_complexsnp10bp_slop50.bed.gz`
+`GRCh3X_HG00Y_v4.2.1_complexsnp10bp_slop50.bed.gz`
 
 for GRCh37/38 and HG001-HG007
 
