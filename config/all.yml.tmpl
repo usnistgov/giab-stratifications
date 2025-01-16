@@ -137,7 +137,7 @@ haploid_stratifications:
               chr_pattern: {template: '%i'}
 
         comparison:
-          other: GRCh37_v34
+          other: GRCh37_v35
 
         include:
           telomeres: false
@@ -272,7 +272,7 @@ haploid_stratifications:
                 md5: 0752dc2554edb0163a0065bc75055e80
 
         comparison:
-          other: GRCh38_v34
+          other: GRCh38_v35
 
         include:
           telomeres: false
@@ -439,26 +439,29 @@ haploid_stratifications:
                 md5: 80c5805295fd913fc833ba290a698dfc
 
         comparison:
-          other: CHM13_v34
+          other: CHM13_v35
 
 diploid2_stratifications:
   HG002:
     ref:
       pat:
-        url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/hg002v1.0.1.pat.fasta.gz
+        url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/hg002v1.1.pat.fasta.gz
+        md5: 49b74706ffd41650aa762d979ddc1d9f
       mat:
-        url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/hg002v1.0.1.mat.fasta.gz
+        url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/hg002v1.1.mat.fasta.gz
+        md5: 775f6a83cc50f5689d1eee13d174c287
     strat_inputs:
       low_complexity:
         rmsk:
           bed:
             pat:
-              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/repeatmasker/hg002v1.0.1.paternal.final.bb
-              md5: 5947df8866bd9f190615ca072fd9e6d9
+              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/repeatmasker/hg002v1.1.paternal.bb
+              md5: 663f99f74d37bb5d5b6dc8a3aa76aefb
             mat:
-              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/repeatmasker/hg002v1.0.1.maternal.final.bb
-              md5: ec8b96518a8b8d9c09794192b629d328
+              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/repeatmasker/hg002v1.1.maternal.bb
+              md5: 4c6e706adae8ac1036632aacc010bcb8
           class_col: 3
+        # TODO not sure what "mnr" means, see https://s3-us-west-2.amazonaws.com/human-pangenomics/index.html?prefix=T2T/HG002/assemblies/annotation/seqfeatures/
         simreps:
           bed:
             dip:
@@ -467,22 +470,28 @@ diploid2_stratifications:
         satellites:
           bed:
             dip:
-              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/centromere/hg002v1.0.1.cenSatv1.0.noheader.bb
-              md5: 33e8a32a5509d89aa8310f450f727896
+              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/centromere/hg002v1.1_v2.0/hg002v1.1.cenSatv2.0.noheader.bb
+              md5: c5d81636255bcf1530345a1bcb9c41c5
           sat_col: 3
+      # lifted off from CHM13 PAR from above
       xy:
         x_par:
-          start: [0, 2392381]
-          end: [154008454, 154341405]
+          start: [0, 2392380]
+          end: [154008445, 154341396]
         y_par:
-          start: [1, 2454197]
-          end: [62092325, 62425490]
+          start: [1, 2454199]
+          end: [62099433, 62432598]
+      # TODO I don't see new segdups here https://s3-us-west-2.amazonaws.com/human-pangenomics/index.html?prefix=T2T/HG002/assemblies/annotation/segdups/
       segdups:
         superdups:
           bed:
             dip:
               url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/segdups/HG002.SDs.010624.45col.bb
               md5: da04009022611f6ee7f855aafefcf91c
+      # TODO seems to be they are here but files are 10x smaller
+      # https://s3-us-west-2.amazonaws.com/human-pangenomics/index.html?prefix=T2T/HG002/assemblies/annotation/JHULiftoff/Jul2024/
+      # actually, this seems totally wrong since the total number of merged bases covered is >1 billion, which is 1/3rd of the entire genome :( that's not right
+      # check the slack thread, the gff there seems more reasonable but not sure if this is the "final" one
       functional:
         cds:
           bed:
@@ -498,33 +507,23 @@ diploid2_stratifications:
           # NOTE: both IGK loci are rearranged and inactivated so this
           # regions actually starts at IGKDEL
           pat:
-            lines:
-              - { chr: 2,  start: 88868025,  end: 90383961  } # IGK
-              - { chr: 7,  start: 38373030,  end: 38494618  } # TRB
-              - { chr: 7,  start: 142831129, end: 143396922 } # TRG
-              - { chr: 14, start: 21320867,  end: 22186894  } # TRA/D
-              - { chr: 14, start: 105296422, end: 105793950 } # IGH
-              - { chr: 22, start: 20560550,  end: 21469622  } # IGL
+            url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/VDJregions/HG002.hap1_VDJ.lifted_to_v1.1.bed
+            md5: 4396c72e42d1926e545a5efa7f7a8b1d
           mat:
-            lines:
-              - { chr: 2,  start: 88855564,  end: 90457523  } # IGK
-              - { chr: 7,  start: 38345242,  end: 38476019  } # TRB
-              - { chr: 7,  start: 143849922, end: 144425196 } # TRG
-              - { chr: 14, start: 23572454,  end: 24503857  } # TRA/D
-              - { chr: 14, start: 107586020, end: 108649327 } # IGH
-              - { chr: 22, start: 24652428,  end: 25418531  } # IGL
-        # lifted off from hg38 stratification above
+            url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/VDJregions/HG002.hap1_VDJ.lifted_to_v1.1.bed
+            md5: 88da2503493db5a9576e947788bcd832
+        # lifted off from hg38 stratification above with -d 3.0 parameter
         kir:
           dip:
             lines:
-              - { chr: 19, hap: 0, start: 57430456, end: 57612879 }
-              - { chr: 19, hap: 1, start: 57338741, end: 57569585 }
-        # lifted off from hg38 stratification above
+              - { chr: 19, hap: 0, start: 57430421, end: 57612844 }
+              - { chr: 19, hap: 1, start: 57338672, end: 57569518 }
+        # lifted off from hg38 stratification above with -d 3.0 parameter
         mhc:
           dip:
             lines:
-              - { chr: 6, hap: 0, start: 28466613, end: 33509399 }
-              - { chr: 6, hap: 1, start: 28463469, end: 33412256 }
+              - { chr: 6, hap: 0, start: 28466588, end: 33509373 }
+              - { chr: 6, hap: 1, start: 28463457, end: 33412240 }
       mappability:
         unplaced_chr_patterns: ["^chr(MT|EBV)$"]
     builds:
@@ -537,7 +536,7 @@ diploid2_stratifications:
         bigbed: true
         comparison:
           pat:
-            other: HG002_pat_v34
+            other: HG002_pat_v35
             replacements:
               - [pat, hap1]
               - [regions_100000, regions_100k]
@@ -546,7 +545,7 @@ diploid2_stratifications:
               - [regions_10000, regions_10k]
               - [regions_5000, regions_5k]
           mat:
-            other: HG002_mat_v34
+            other: HG002_mat_v35
             replacements:
               - [mat, hap2]
               - [regions_100000, regions_100k]
@@ -556,11 +555,11 @@ diploid2_stratifications:
               - [regions_5000, regions_5k]
 
 comparison_strats:
-  GRCh37_v34: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.4/genome-stratifications-GRCh37@all.tar.gz
-  GRCh38_v34: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.4/genome-stratifications-GRCh38@all.tar.gz
-  CHM13_v34: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.4/genome-stratifications-CHM13@all.tar.gz
-  HG002_pat_v34: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.4/genome-stratifications-HG002.hap1@all.tar.gz
-  HG002_mat_v34: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.4/genome-stratifications-HG002.hap2@all.tar.gz
+  GRCh37_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-GRCh37@all.tar.gz
+  GRCh38_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-GRCh38@all.tar.gz
+  CHM13_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-CHM13@all.tar.gz
+  HG002_pat_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-HG002.hap1@all.tar.gz
+  HG002_mat_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-HG002.hap2@all.tar.gz
 
 benchmark_subsets:
   - AllAutosomes
