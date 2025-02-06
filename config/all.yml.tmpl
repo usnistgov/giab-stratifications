@@ -461,12 +461,11 @@ diploid2_stratifications:
               url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/repeatmasker/hg002v1.1.maternal.bb
               md5: 4c6e706adae8ac1036632aacc010bcb8
           class_col: 3
-        # TODO not sure what "mnr" means, see https://s3-us-west-2.amazonaws.com/human-pangenomics/index.html?prefix=T2T/HG002/assemblies/annotation/seqfeatures/
         simreps:
           bed:
             dip:
-              url:  https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/seqfeatures/hg002v1.0.1.simpleRepeat.newref.sort.bb
-              md5: a187d44b8687c0e8034bbabb8ae40a75
+              url:  https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/seqfeatures/hg002v1.1.simpleRepeat.newref.sort.bb
+              md5: 6bc6bd21ec4c63f572359c10cd963bc1
         satellites:
           bed:
             dip:
@@ -481,26 +480,21 @@ diploid2_stratifications:
         y_par:
           start: [1, 2454199]
           end: [62099433, 62432598]
-      # TODO I don't see new segdups here https://s3-us-west-2.amazonaws.com/human-pangenomics/index.html?prefix=T2T/HG002/assemblies/annotation/segdups/
       segdups:
         superdups:
           bed:
             dip:
-              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/segdups/HG002.SDs.010624.45col.bb
-              md5: da04009022611f6ee7f855aafefcf91c
-      # TODO seems to be they are here but files are 10x smaller
-      # https://s3-us-west-2.amazonaws.com/human-pangenomics/index.html?prefix=T2T/HG002/assemblies/annotation/JHULiftoff/Jul2024/
-      # actually, this seems totally wrong since the total number of merged bases covered is >1 billion, which is 1/3rd of the entire genome :( that's not right
-      # check the slack thread, the gff there seems more reasonable but not sure if this is the "final" one
+              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/segdups/hg002v1.1.SDs.013025.44col.bb
+              md5: fb08de2cf928944d5b6c6772ba60bd58
       functional:
         cds:
           bed:
             pat:
-              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/LiftoffIsoseq/hg002v1.0.1.PAT.liftoff.polished.sqanti3.sorted.addFeatures.addTags.modiAttribute.gff
-              md5: f436fe09bfd73aeb44f946a69b3a9a83
+              url: https://ftp.ccb.jhu.edu/pub/data/hg002-q100/v0.2/hg002.v1.1.loff.v0.2.pat.gff.gz
+              md5: e8c18dbdb95d034a8aebca90764bccdb
             mat:
-              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/LiftoffIsoseq/hg002v1.0.1.MAT.liftoff.polished.sqanti3.sorted.addFeatures.addTags.modiAttribute.gff
-              md5: 78358c171a3c4141aaa2552fc413b5eb
+              url: https://ftp.ccb.jhu.edu/pub/data/hg002-q100/v0.2/hg002.v1.1.loff.v0.2.mat.gff.gz
+              md5: 212caedca27e9bc322ba1393abbb8c44
           cds_params:
             source_match: null
         vdj:
@@ -534,32 +528,11 @@ diploid2_stratifications:
           kir: true
           mhc: true
         bigbed: true
-        comparison:
-          pat:
-            other: HG002_pat_v35
-            replacements:
-              - [pat, hap1]
-              - [regions_100000, regions_100k]
-              - [regions_50000, regions_50k]
-              - [regions_25000, regions_25k]
-              - [regions_10000, regions_10k]
-              - [regions_5000, regions_5k]
-          mat:
-            other: HG002_mat_v35
-            replacements:
-              - [mat, hap2]
-              - [regions_100000, regions_100k]
-              - [regions_50000, regions_50k]
-              - [regions_25000, regions_25k]
-              - [regions_10000, regions_10k]
-              - [regions_5000, regions_5k]
 
 comparison_strats:
   GRCh37_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-GRCh37@all.tar.gz
   GRCh38_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-GRCh38@all.tar.gz
   CHM13_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-CHM13@all.tar.gz
-  HG002_pat_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-HG002.hap1@all.tar.gz
-  HG002_mat_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-HG002.hap2@all.tar.gz
 
 benchmark_subsets:
   - AllAutosomes
