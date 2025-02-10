@@ -477,9 +477,11 @@ diploid2_stratifications:
         x_par:
           start: [0, 2392380]
           end: [154008445, 154341396]
+          comment: Coordinates were obtained by lifting PAR stratification from GRCh38 using liftoff with -d 3.0.
         y_par:
           start: [1, 2454199]
           end: [62099433, 62432598]
+          comment: Coordinates were obtained by lifting PAR stratification from GRCh38 using liftoff with -d 3.0.
       segdups:
         superdups:
           bed:
@@ -500,24 +502,29 @@ diploid2_stratifications:
         vdj:
           # NOTE: both IGK loci are rearranged and inactivated so this
           # regions actually starts at IGKDEL
-          pat:
-            url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/VDJregions/HG002.hap1_VDJ.lifted_to_v1.1.bed
-            md5: 4396c72e42d1926e545a5efa7f7a8b1d
-          mat:
-            url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/VDJregions/HG002.hap1_VDJ.lifted_to_v1.1.bed
-            md5: 88da2503493db5a9576e947788bcd832
-        # lifted off from hg38 stratification above with -d 3.0 parameter
+          bed:
+            pat:
+              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/VDJregions/HG002.hap1_VDJ.lifted_to_v1.1.bed
+              md5: 4396c72e42d1926e545a5efa7f7a8b1d
+            mat:
+              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/VDJregions/HG002.hap2_VDJ.lifted_to_v1.1.bed
+              md5: 88da2503493db5a9576e947788bcd832
         kir:
           dip:
             lines:
               - { chr: 19, hap: 0, start: 57430421, end: 57612844 }
               - { chr: 19, hap: 1, start: 57338672, end: 57569518 }
-        # lifted off from hg38 stratification above with -d 3.0 parameter
+            provenance: >
+             This bed file was specified manually in the yaml config.
+             Coordinates were obtained by lifting KIR stratification from GRCh38 using liftoff with -d 3.0.
         mhc:
           dip:
             lines:
               - { chr: 6, hap: 0, start: 28466588, end: 33509373 }
               - { chr: 6, hap: 1, start: 28463457, end: 33412240 }
+            provenance: >
+             This bed file was specified manually in the yaml config.
+             Coordinates were obtained by lifting KIR stratification from GRCh38 using liftoff with -d 3.0.
       mappability:
         unplaced_chr_patterns: ["^chr(MT|EBV)$"]
     builds:
