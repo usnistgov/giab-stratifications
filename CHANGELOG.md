@@ -35,26 +35,37 @@ insert sizes.
 
 This created the following new bed files:
 
-`HG002.X_het_regions_100.bed.gz`
-`HG002.X_het_regions_250.bed.gz`
-`HG002.X_het_regions_500.bed.gz`
-`HG002.X_het_regions_1000.bed.gz`
-`HG002.X_het_SNVorSV_regions_100.bed.gz`
-`HG002.X_het_SNVorSV_regions_250.bed.gz`
-`HG002.X_het_SNVorSV_regions_500.bed.gz`
-`HG002.X_het_SNVorSV_regions_1000.bed.gz`
-`HG002.X_hom_regions_100.bed.gz`
-`HG002.X_hom_regions_250.bed.gz`
-`HG002.X_hom_regions_500.bed.gz`
-`HG002.X_hom_regions_1000.bed.gz`
-`HG002.X_hom_SNVorSV_regions_100.bed.gz`
-`HG002.X_hom_SNVorSV_regions_250.bed.gz`
-`HG002.X_hom_SNVorSV_regions_500.bed.gz`
-`HG002.X_hom_SNVorSV_regions_1000.bed.gz`
+* `HG002.X_het_regions_100.bed.gz`
+* `HG002.X_het_regions_250.bed.gz`
+* `HG002.X_het_regions_500.bed.gz`
+* `HG002.X_het_regions_1000.bed.gz`
+* `HG002.X_het_SNVorSV_regions_100.bed.gz`
+* `HG002.X_het_SNVorSV_regions_250.bed.gz`
+* `HG002.X_het_SNVorSV_regions_500.bed.gz`
+* `HG002.X_het_SNVorSV_regions_1000.bed.gz`
+* `HG002.X_hom_regions_100.bed.gz`
+* `HG002.X_hom_regions_250.bed.gz`
+* `HG002.X_hom_regions_500.bed.gz`
+* `HG002.X_hom_regions_1000.bed.gz`
+* `HG002.X_hom_SNVorSV_regions_100.bed.gz`
+* `HG002.X_hom_SNVorSV_regions_250.bed.gz`
+* `HG002.X_hom_SNVorSV_regions_500.bed.gz`
+* `HG002.X_hom_SNVorSV_regions_1000.bed.gz`
 
 where `X` denotes `pat` or `mat` (see below for new naming conventions)
 
 ## Other Changes
+
+### CHM13 with masked Y PAR
+
+GRCh37/38 both have the Y PAR masked (filled with Ns) to reflect the fact that
+this region behaves like a diploid region in a haploid reference. Previous
+stratifications used the unmasked CHM13 reference; this version uses the masked
+reference to standardize it with GRCh37/38.
+
+This slightly altered nearly all the stratifications (basically anything with
+regions on the Y chromosome). Full changes can be found in
+`validation/CHM13@all`.
 
 ### Diploid Naming Convention
 
@@ -68,15 +79,15 @@ which are 1-indexed. In previous versions the GFF file was treated as 0-indexed,
 which led to each stratification being shifted to 3' 1 base pair. This has been
 fixed, and the following stratifications were affected (for each ref):
 
-`Functional/GRCh37_notinrefseq_cds.bed.gz`
-`Functional/GRCh37_refseq_cds.bed.gz`
-`OtherDifficult/GRCh37_VDJ.bed.gz`
-`Functional/GRCh38_notinrefseq_cds.bed.gz`
-`Functional/GRCh38_refseq_cds.bed.gz`
-`OtherDifficult/GRCh38_VDJ.bed.gz`
-`Functional/CHM13_notinrefseq_cds.bed.gz`
-`Functional/CHM13_refseq_cds.bed.gz`
-`OtherDifficult/CHM13_VDJ.bed.gz`
+* `Functional/GRCh37_notinrefseq_cds.bed.gz`
+* `Functional/GRCh37_refseq_cds.bed.gz`
+* `OtherDifficult/GRCh37_VDJ.bed.gz`
+* `Functional/GRCh38_notinrefseq_cds.bed.gz`
+* `Functional/GRCh38_refseq_cds.bed.gz`
+* `OtherDifficult/GRCh38_VDJ.bed.gz`
+* `Functional/CHM13_notinrefseq_cds.bed.gz`
+* `Functional/CHM13_refseq_cds.bed.gz`
+* `OtherDifficult/CHM13_VDJ.bed.gz`
 
 ### GenomeSpecific Name Correction (GRCh37/38 only)
 
@@ -108,26 +119,26 @@ Additionally, HG002 includes a new groups of
 stratifications under the `Diploid` directory which includes the following
 (where `X` is either `1` or `2`):
 
-`Diploid/HG002.hapX_het_regions_5k.bed.gz`
-`Diploid/HG002.hapX_het_regions_10k.bed.gz`
-`Diploid/HG002.hapX_het_regions_25k.bed.gz`
-`Diploid/HG002.hapX_het_regions_50k.bed.gz`
-`Diploid/HG002.hapX_het_regions_100k.bed.gz`
-`Diploid/HG002.hapX_het_SNVorSV_regions_5k.bed.gz`
-`Diploid/HG002.hapX_het_SNVorSV_regions_10k.bed.gz`
-`Diploid/HG002.hapX_het_SNVorSV_regions_25k.bed.gz`
-`Diploid/HG002.hapX_het_SNVorSV_regions_50k.bed.gz`
-`Diploid/HG002.hapX_het_SNVorSV_regions_100k.bed.gz`
-`Diploid/HG002.hapX_hom_regions_5k.bed.gz`
-`Diploid/HG002.hapX_hom_regions_10k.bed.gz`
-`Diploid/HG002.hapX_hom_regions_25k.bed.gz`
-`Diploid/HG002.hapX_hom_regions_50k.bed.gz`
-`Diploid/HG002.hapX_hom_regions_100k.bed.gz`
-`Diploid/HG002.hapX_hom_SNVorSV_regions_5k.bed.gz`
-`Diploid/HG002.hapX_hom_SNVorSV_regions_10k.bed.gz`
-`Diploid/HG002.hapX_hom_SNVorSV_regions_25k.bed.gz`
-`Diploid/HG002.hapX_hom_SNVorSV_regions_50k.bed.gz`
-`Diploid/HG002.hapX_hom_SNVorSV_regions_100k.bed.gz`
+* `Diploid/HG002.hapX_het_regions_5k.bed.gz`
+* `Diploid/HG002.hapX_het_regions_10k.bed.gz`
+* `Diploid/HG002.hapX_het_regions_25k.bed.gz`
+* `Diploid/HG002.hapX_het_regions_50k.bed.gz`
+* `Diploid/HG002.hapX_het_regions_100k.bed.gz`
+* `Diploid/HG002.hapX_het_SNVorSV_regions_5k.bed.gz`
+* `Diploid/HG002.hapX_het_SNVorSV_regions_10k.bed.gz`
+* `Diploid/HG002.hapX_het_SNVorSV_regions_25k.bed.gz`
+* `Diploid/HG002.hapX_het_SNVorSV_regions_50k.bed.gz`
+* `Diploid/HG002.hapX_het_SNVorSV_regions_100k.bed.gz`
+* `Diploid/HG002.hapX_hom_regions_5k.bed.gz`
+* `Diploid/HG002.hapX_hom_regions_10k.bed.gz`
+* `Diploid/HG002.hapX_hom_regions_25k.bed.gz`
+* `Diploid/HG002.hapX_hom_regions_50k.bed.gz`
+* `Diploid/HG002.hapX_hom_regions_100k.bed.gz`
+* `Diploid/HG002.hapX_hom_SNVorSV_regions_5k.bed.gz`
+* `Diploid/HG002.hapX_hom_SNVorSV_regions_10k.bed.gz`
+* `Diploid/HG002.hapX_hom_SNVorSV_regions_25k.bed.gz`
+* `Diploid/HG002.hapX_hom_SNVorSV_regions_50k.bed.gz`
+* `Diploid/HG002.hapX_hom_SNVorSV_regions_100k.bed.gz`
 
 The `het` bed files cover regions that are within k base pairs of a het variant
 relative to the other haplotype. The `het_SNVorSV` bed files are a subtype of
@@ -149,11 +160,11 @@ Mappabilty and union changed slightly due to the non-determinism in GEM. This
 resulted in at most ~200 base pairs being changed depending on the reference.
 This affected the following bed files:
 
-`Mappability/<ref>_lowmappabilityall.bed.gz`
-`Mappability/<ref>_nonunique_l100_m2_e1.bed.gz`
-`Mappability/<ref>_notinlowmappabilityall.bed.gz`
-`Union/<ref>_alllowmapandsegdupregions.bed.gz`
-`Union/<ref>_notinalllowmapandsegdupregions.bed.gz`
+* `Mappability/<ref>_lowmappabilityall.bed.gz`
+* `Mappability/<ref>_nonunique_l100_m2_e1.bed.gz`
+* `Mappability/<ref>_notinlowmappabilityall.bed.gz`
+* `Union/<ref>_alllowmapandsegdupregions.bed.gz`
+* `Union/<ref>_notinalllowmapandsegdupregions.bed.gz`
 
 Additionally, the GFF files used to create the refseq CDS region files received
 updates in late 2023, resulting in the following gains to
@@ -191,15 +202,15 @@ was miniscule compared to what was added.
 
 Affected stratifications:
 
-`LowComplexity/CHM13_AllTandemRepeats.bed.gz`
-`LowComplexity/CHM13_AllTandemRepeats_201to10000bp_slop5.bed.gz`
-`LowComplexity/CHM13_AllTandemRepeats_51to200bp_slop5.bed.gz`
-`LowComplexity/CHM13_AllTandemRepeats_ge10001bp_slop5.bed.gz`
-`LowComplexity/CHM13_AllTandemRepeats_ge101bp_slop5.bed.gz`
-`LowComplexity/CHM13_AllTandemRepeats_le50bp_slop5.bed.gz`
-`LowComplexity/CHM13_AllTandemRepeatsandHomopolymers_slop5.bed.gz`
-`LowComplexity/CHM13_notinAllTandemRepeatsandHomopolymers_slop5.bed.gz`
-`LowComplexity/CHM13_notinallTandemRepeats.bed.gz`
+* `LowComplexity/CHM13_AllTandemRepeats.bed.gz`
+* `LowComplexity/CHM13_AllTandemRepeats_201to10000bp_slop5.bed.gz`
+* `LowComplexity/CHM13_AllTandemRepeats_51to200bp_slop5.bed.gz`
+* `LowComplexity/CHM13_AllTandemRepeats_ge10001bp_slop5.bed.gz`
+* `LowComplexity/CHM13_AllTandemRepeats_ge101bp_slop5.bed.gz`
+* `LowComplexity/CHM13_AllTandemRepeats_le50bp_slop5.bed.gz`
+* `LowComplexity/CHM13_AllTandemRepeatsandHomopolymers_slop5.bed.gz`
+* `LowComplexity/CHM13_notinAllTandemRepeatsandHomopolymers_slop5.bed.gz`
+* `LowComplexity/CHM13_notinallTandemRepeats.bed.gz`
 
 Additionally, these union stratifications inherited the expansions to the
 low complexity regions above:
@@ -214,11 +225,11 @@ them) changed slightly due to non-determinism in GEM. These changes are
 miniscule and amount to several hundred bases total. They are documented here
 for completion:
 
-`Mappability/CHM13_lowmappabilityall.bed.gz`
-`Mappability/CHM13_nonunique_l100_m2_e1.bed.gz`
-`Mappability/CHM13_notinlowmappabilityall.bed.gz`
-`Union/CHM13_alllowmapandsegdupregions.bed.gz`
-`Union/CHM13_notinalllowmapandsegdupregions.bed.gz`
+* `Mappability/CHM13_lowmappabilityall.bed.gz`
+* `Mappability/CHM13_nonunique_l100_m2_e1.bed.gz`
+* `Mappability/CHM13_notinlowmappabilityall.bed.gz`
+* `Union/CHM13_alllowmapandsegdupregions.bed.gz`
+* `Union/CHM13_notinalllowmapandsegdupregions.bed.gz`
 
 # 3.2
 
