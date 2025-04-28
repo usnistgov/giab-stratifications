@@ -1,0 +1,574 @@
+version: 3.6
+
+haploid_stratifications:
+  GRCh37:
+    ref:
+      hap:
+        url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh37/hs37d5.fa.gz
+        md5: 12a0bed94078e2d9e8c00da793bbc84e
+      chr_pattern: {template: '%i'}
+    strat_inputs:
+      gap:
+        bed:
+          hap: 
+            url: https://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/gap.txt.gz
+            md5: ec81040d83fd92b431d5abdf3bb0271a
+        params:
+          bed_cols: {chr: 1, start: 2, end: 3}
+      low_complexity:
+        rmsk:
+          bed:
+            hap:
+              url: https://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/rmsk.txt.gz
+              md5: 540d385787030f6dcecd15e6f7229c32
+          class_col: 11
+          params:
+            bed_cols: {chr: 5, start: 6, end: 7}
+        satellites: null
+        simreps:
+          bed:
+            hap:
+              url: https://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/simpleRepeat.txt.gz
+              md5: b8d13e59e6887c9f471ff1ceef92fcb1
+          params:
+            bed_cols: {chr: 1, start: 2, end: 3}
+      xy:
+        features:
+          x_bed:
+            bed:
+              hap:
+                url: https://raw.githubusercontent.com/SexChrLab/SexChrCoordinates/4ad1faf2b822db6fb89498a750d0b5336703fde3/hg19/chrX_genomic_features_hg19.bed
+                md5: 5af632ccd4a5b0398ca4c0964c93276b
+            level_col: 3
+            params:
+              sep: "\\s+"
+          y_bed:
+            bed:
+              hap:
+                url: https://raw.githubusercontent.com/SexChrLab/SexChrCoordinates/4ad1faf2b822db6fb89498a750d0b5336703fde3/hg19/chrY_genomic_features_hg19.bed
+                md5: 195dbf25e9b46a4daf528ede71070f74
+            level_col: 3
+            params:
+              sep: "\\s+"
+        x_par:
+          start: [60001, 2699520]
+          end: [154931044, 155260560]
+        y_par:
+          start: [0, 2749806]
+          end: [59133470, 59373566]
+      segdups:
+        superdups:
+          bed:
+            hap:
+              url: https://hgdownload.soe.ucsc.edu/goldenPath/hg19/database/genomicSuperDups.txt.gz
+              md5: f71d6df1a4c04a15997cf58c6334a4e6
+          params:
+            bed_cols: {chr: 1, start: 2, end: 3}
+      functional:
+        cds:
+          bed:
+            hap:
+              url: https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/all_assembly_versions/GCF_000001405.25_GRCh37.p13/GCF_000001405.25_GRCh37.p13_genomic.gff.gz
+              md5: 4f5c1eccaf85f44882e67f1cf2a76788
+            chr_pattern:
+              special:
+                1: NC_000001.10
+                2: NC_000002.11
+                3: NC_000003.11
+                4: NC_000004.11
+                5: NC_000005.9
+                6: NC_000006.11
+                7: NC_000007.13
+                8: NC_000008.10
+                9: NC_000009.11
+                10: NC_000010.10
+                11: NC_000011.9
+                12: NC_000012.11
+                13: NC_000013.10
+                14: NC_000014.8
+                15: NC_000015.9
+                16: NC_000016.9
+                17: NC_000017.10
+                18: NC_000018.9
+                19: NC_000019.9
+                20: NC_000020.10
+                21: NC_000021.8
+                22: NC_000022.10
+                23: NC_000023.10
+                24: NC_000024.9
+        mhc:
+          bed:
+            chr_pattern:
+              template: '%i'
+            hap:
+              url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.1/GRCh37/OtherDifficult/GRCh37_MHC.bed.gz
+              md5: 17c15b3e9133db26d8e05a594c59eaf0
+        kir:
+          bed:
+            chr_pattern:
+              template: '%i'
+            hap:
+              url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.1/GRCh37/OtherDifficult/GRCh37_KIR.bed.gz
+              md5: c2a74734067b074f2c372d476c81aa60
+      mappability:
+        unplaced_chr_patterns: ["^chrMT$", "^GL.+$", "^hs37d5$"]
+    builds:
+      all:
+        chr_filter: []
+        bigbed: true
+        # lifted straight from v3.1
+        other_strats:
+          $GRCh37_external
+        bench:
+          query_vcf:
+            vcf:
+              hap:
+                url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/PacBio_CCS_15kb_20kb_chemistry2_10312019/GRCh37/deepvariant_HG002_15kb_20kb_52X_SequelII.vcf.gz
+          bench_vcf:
+            vcf:
+              hap:
+                url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_DraftBenchmark_defrabbV0.015-20240215/GRCh37_HG2-T2TQ100-V1.0.vcf.gz
+                md5: a6bcd8ba0221b08925479758ba37d25d
+          bench_bed:
+            bed:
+              hap:
+                url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_DraftBenchmark_defrabbV0.015-20240215/GRCh37_HG2-T2TQ100-V1.0_smvar.benchmark.bed
+                md5: 2500c465809a6ed7ceb93614bd4feb5f
+              chr_pattern: {template: '%i'}
+
+        comparison:
+          other: GRCh37_v35
+
+        include:
+          telomeres: false
+          kir: true
+          mhc: true
+
+  GRCh38:
+    ref:
+      hap:
+        url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/references/GRCh38/GCA_000001405.15_GRCh38_no_alt_analysis_set.fasta.gz
+        md5: a6da8681616c05eb542f1d91606a7b2f
+    strat_inputs:
+      gap:
+        bed:
+          hap:
+            url: https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/gap.txt.gz
+            md5: 4880b2f4c3f08766003855818f0db02d
+        params:
+          bed_cols: {chr: 1, start: 2, end: 3}
+      low_complexity:
+        rmsk:
+          bed:
+            hap:
+              url: https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/rmsk.txt.gz
+              md5: e8afed8cbcfef00b6cc47059c6fb6fa2
+          params:
+            bed_cols: {chr: 5, start: 6, end: 7}
+          class_col: 11
+        satellites: null
+        simreps:
+          bed:
+            hap:
+              url: https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/simpleRepeat.txt.gz
+              md5: b0e801344ba654a5146a2ba3e9973462
+          params:
+            bed_cols: {chr: 1, start: 2, end: 3}
+      xy:
+        features:
+          x_bed:
+            bed:
+              hap:
+                url: https://raw.githubusercontent.com/SexChrLab/SexChrCoordinates/4ad1faf2b822db6fb89498a750d0b5336703fde3/GRCh38/chrX_genomic_features_GRCh38.bed
+                md5: 94acda1d4358d30753422799152f4310
+            level_col: 3
+          y_bed:
+            bed:
+              hap:
+                url: https://raw.githubusercontent.com/SexChrLab/SexChrCoordinates/4ad1faf2b822db6fb89498a750d0b5336703fde3/GRCh38/chrY_genomic_features_GRCh38.bed
+                md5: 770682734c41f5f7c1655adf1f986cb6
+            level_col: 3
+        x_par:
+          start: [0, 2781479]
+          end: [155701383, 156030895]
+        y_par:
+          start: [10001, 2781479]
+          end: [56887902, 57217415]
+      segdups:
+        superdups:
+          bed:
+            hap:
+              url: https://hgdownload.soe.ucsc.edu/goldenPath/hg38/database/genomicSuperDups.txt.gz
+              md5: 502e2b4dd6bf0cbd8dbdd9eb373aaa8e
+          params:
+            bed_cols: {chr: 1, start: 2, end: 3}
+      functional:
+        cds:
+          bed:
+            hap:
+              url: https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/all_assembly_versions/GCF_000001405.39_GRCh38.p13/GCF_000001405.39_GRCh38.p13_genomic.gff.gz
+              md5: 6b657881c2c8d2d099a1c1749299538e
+            chr_pattern:
+              special:
+                1: NC_000001.11
+                2: NC_000002.12
+                3: NC_000003.12
+                4: NC_000004.12
+                5: NC_000005.10
+                6: NC_000006.12
+                7: NC_000007.14
+                8: NC_000008.11
+                9: NC_000009.12
+                10: NC_000010.11
+                11: NC_000011.10
+                12: NC_000012.12
+                13: NC_000013.11
+                14: NC_000014.9
+                15: NC_000015.10
+                16: NC_000016.10
+                17: NC_000017.11
+                18: NC_000018.10
+                19: NC_000019.10
+                20: NC_000020.11
+                21: NC_000021.9
+                22: NC_000022.11
+                23: NC_000023.11
+                24: NC_000024.10
+        kir:
+          bed:
+            hap:
+              url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.1/GRCh38/OtherDifficult/GRCh38_KIR.bed.gz
+              md5: 12ded3df9d6ca354d008b024c9e7e1f7
+        mhc:
+          bed:
+            hap:
+              url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.1/GRCh38/OtherDifficult/GRCh38_MHC.bed.gz
+              md5: 2d1f756fb043423003a6fe95baa3c030
+
+      mappability:
+        unplaced_chr_patterns: ["^chrM$", "^chr.+_.+$"]
+    builds:
+      all:
+        chr_filter: []
+        bigbed: true
+        other_strats:
+          $GRCh38_external
+        bench:
+          query_vcf:
+            vcf:
+              hap:
+                url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/PacBio_CCS_15kb_20kb_chemistry2_10312019/GRCh38/deepvariant_HG002_GRCh38_15kb_20kb_53X_SequelII.vcf.gz
+          bench_vcf:
+            vcf:
+              hap:
+                url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_DraftBenchmark_defrabbV0.015-20240215/GRCh38_HG2-T2TQ100-V1.0.vcf.gz
+                md5: 43e4218c65937c5572abfe2f15a6374e
+          bench_bed:
+            bed:
+              hap:
+                url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_DraftBenchmark_defrabbV0.015-20240215/GRCh38_HG2-T2TQ100-V1.0_smvar.benchmark.bed
+                md5: 0752dc2554edb0163a0065bc75055e80
+
+        comparison:
+          other: GRCh38_v35
+
+        include:
+          telomeres: false
+          mhc: true
+          kir: true
+
+  CHM13:
+    ref:
+      hap:
+        url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/CHM13/assemblies/analysis_set/chm13v2.0_maskedY_rCRS.fa.gz
+        md5: 5c7b2a0911bba97d57d30a0f8267351f
+    strat_inputs:
+      low_complexity:
+        rmsk:
+          # NOTE: the class name is embedded in a larger string like "<name>#<class>/<subclass>" but
+          # this shouldn't matter since we are just filtering using grep and the class name shouldn't
+          # appear anywhere else in the line
+          bed:
+            hap:
+              url: https://hgdownload.soe.ucsc.edu/gbdb/hs1/t2tRepeatMasker/chm13v2.0_rmsk.bb
+              md5: 5bb6104edd5c5f5246c60eebeac97e57
+          class_col: 3
+        simreps:
+          bed:
+            hap:
+              url: https://hgdownload.soe.ucsc.edu/gbdb/hs1/bbi/simpleRepeat.bb
+              md5: 4548537655ac6dc4fcad8f0cdb2deca9
+            chr_pattern:
+              special:
+                23: CP068255.2
+                22: CP068256.2
+                21: CP068257.2
+                20: CP068258.2
+                19: CP068259.2
+                18: CP068260.2
+                17: CP068261.2
+                16: CP068262.2
+                15: CP068263.2
+                14: CP068264.2
+                13: CP068265.2
+                12: CP068266.2
+                11: CP068267.2
+                10: CP068268.2
+                9: CP068269.2
+                8: CP068270.2
+                7: CP068271.2
+                6: CP068272.2
+                5: CP068273.2
+                4: CP068274.2
+                3: CP068275.2
+                2: CP068276.2
+                1: CP068277.2
+                24: CP086569.2
+        satellites:
+          bed:
+            hap:
+              url: https://hgdownload.soe.ucsc.edu/gbdb/hs1/censat/censat.bb
+              md5: aa89dad8ab80270f963f2c99f1df3697
+          params:
+            skip_lines: 1
+          sat_col: 3
+      xy:
+        features:
+          x_bed:
+            bed:
+              hap:
+                url: https://raw.githubusercontent.com/SexChrLab/SexChrCoordinates/4ad1faf2b822db6fb89498a750d0b5336703fde3/T2T/chrX_genomic_features_CHM13.bed
+                md5: 7cd6a2d1970372fa997144f4c842e2cd
+            level_col: 3
+          y_bed:
+            bed:
+              hap:
+                url: https://raw.githubusercontent.com/SexChrLab/SexChrCoordinates/4ad1faf2b822db6fb89498a750d0b5336703fde3/T2T/chrY_genomic_features_HG002.bed
+                md5: c2cb0d831db1f71dfb4632a6ce79b0d6
+            level_col: 3
+          ampliconic: null # not present in these files
+        x_par:
+          start: [0, 2394410]
+          end: [153925834, 154259566]
+        y_par:
+          start: [0, 2458320]
+          end: [62122809, 62460029]
+      segdups:
+        superdups:
+          bed:
+            hap:
+              url: https://hgdownload.soe.ucsc.edu/gbdb/hs1/sedefSegDups/sedefSegDups.bb
+              md5: 674a084afd2a80b35955f20a11fc0621
+      functional:
+        cds:
+          bed:
+            hap:
+              url: https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/all_assembly_versions/GCF_009914755.1_T2T-CHM13v2.0/GCF_009914755.1_T2T-CHM13v2.0_genomic.gff.gz
+              md5: 55482d4eeaefe18581a6ff5899f47695
+            chr_pattern:
+              special:
+                1: NC_060925.1
+                2: NC_060926.1
+                3: NC_060927.1
+                4: NC_060928.1
+                5: NC_060929.1
+                6: NC_060930.1
+                7: NC_060931.1
+                8: NC_060932.1
+                9: NC_060933.1
+                10: NC_060934.1
+                11: NC_060935.1
+                12: NC_060936.1
+                13: NC_060937.1
+                14: NC_060938.1
+                15: NC_060939.1
+                16: NC_060940.1
+                17: NC_060941.1
+                18: NC_060942.1
+                19: NC_060943.1
+                20: NC_060944.1
+                21: NC_060945.1
+                22: NC_060946.1
+                23: NC_060947.1
+                24: NC_060948.1
+        mhc:
+          hap:
+            lines:
+              - { chr: 6, start: 28381448, end: 33301940 }
+        kir:
+          hap:
+            lines:
+              - { chr: 19, start: 57809628, end: 57966046 }
+
+      mappability:
+        unplaced_chr_patterns: ["^chrM$"] 
+    builds:
+      all:
+        include:
+          kir: true
+          mhc: true
+        chr_filter: []
+        bigbed: true
+        other_strats:
+          OtherDifficult:
+            rDNA:
+              data:
+                bed:
+                  hap:
+                    url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.1/CHM13v2.0/OtherDifficult/CHM13v2.0_rDNA.bed.gz 
+                    md5: 2127e7ae1e62ab834746e7318f4e8415
+              description: Ribosomal DNA arrays.
+        bench:
+          query_vcf:
+            vcf:
+              hap:
+                url: https://storage.googleapis.com/brain-genomics/awcarroll/misc/giab/HG002.pacbio.chm13.vcf.gz
+          # https://drive.google.com/drive/u/1/folders/11RY2oMMShOuQ0HDBmkwXllBEHrUlwTRg
+          bench_vcf:
+            vcf:
+              hap:
+                url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_DraftBenchmark_defrabbV0.015-20240215/CHM13v2.0_HG2-T2TQ100-V1.0.vcf.gz
+                md5: 61e520ea7b75838275db64cfeac0b0d9
+          bench_bed:
+            bed:
+              hap:
+                url: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/data/AshkenazimTrio/analysis/NIST_HG002_DraftBenchmark_defrabbV0.015-20240215/CHM13v2.0_HG2-T2TQ100-V1.0_smvar.benchmark.bed
+                md5: 80c5805295fd913fc833ba290a698dfc
+
+        comparison:
+          other: CHM13_v35
+
+diploid2_stratifications:
+  HG002:
+    ref:
+      pat:
+        url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/hg002v1.1.pat.fasta.gz
+        md5: 49b74706ffd41650aa762d979ddc1d9f
+      mat:
+        url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/hg002v1.1.mat.fasta.gz
+        md5: 775f6a83cc50f5689d1eee13d174c287
+    strat_inputs:
+      low_complexity:
+        rmsk:
+          bed:
+            pat:
+              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/repeatmasker/hg002v1.1.paternal.bb
+              md5: 7a891afc699ccd605ea222f80f75aa32
+            mat:
+              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/repeatmasker/hg002v1.1.maternal.bb
+              md5: 2cbd68bbe9f7377bddf08c938bb29478
+          class_col: 3
+        simreps:
+          bed:
+            dip:
+              url:  https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/seqfeatures/hg002v1.1.simpleRepeat.newref.sort.bb
+              md5: 6bc6bd21ec4c63f572359c10cd963bc1
+        satellites:
+          bed:
+            dip:
+              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/centromere/hg002v1.1_v2.0/hg002v1.1.cenSatv2.0.noheader.bb
+              md5: 9cb6a85a8743d25f2467d069e6f42b7b
+          sat_col: 3
+      # lifted off from CHM13 PAR from above
+      xy:
+        x_par:
+          start: [0, 2392380]
+          end: [154008445, 154341396]
+          comment: Coordinates were obtained by lifting PAR stratification from GRCh38 using liftoff with -d 3.0.
+        y_par:
+          start: [1, 2454199]
+          end: [62099433, 62432598]
+          comment: Coordinates were obtained by lifting PAR stratification from GRCh38 using liftoff with -d 3.0.
+      segdups:
+        superdups:
+          bed:
+            dip:
+              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/segdups/hg002v1.1.SDs.013025.44col.bb
+              md5: fb08de2cf928944d5b6c6772ba60bd58
+      functional:
+        cds:
+          bed:
+            pat:
+              url: ftp://ftp.ccb.jhu.edu/pub/data/hg002-q100/v0.2/hg002.v1.1.loff.v0.2.pat.gff.gz
+              md5: e8c18dbdb95d034a8aebca90764bccdb
+            mat:
+              url: ftp://ftp.ccb.jhu.edu/pub/data/hg002-q100/v0.2/hg002.v1.1.loff.v0.2.mat.gff.gz
+              md5: 212caedca27e9bc322ba1393abbb8c44
+          cds_params:
+            source_match: null
+        vdj:
+          # NOTE: both IGK loci are rearranged and inactivated so this
+          # regions actually starts at IGKDEL
+          bed:
+            pat:
+              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/VDJregions/HG002.hap1_VDJ.lifted_to_v1.1.bed
+              md5: 4396c72e42d1926e545a5efa7f7a8b1d
+            mat:
+              url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/VDJregions/HG002.hap2_VDJ.lifted_to_v1.1.bed
+              md5: 88da2503493db5a9576e947788bcd832
+        kir:
+          dip:
+            lines:
+              - { chr: 19, hap: 0, start: 57430421, end: 57612844 }
+              - { chr: 19, hap: 1, start: 57338672, end: 57569518 }
+            provenance: >
+             This bed file was specified manually in the yaml config.
+             Coordinates were obtained by lifting KIR stratification from GRCh38 using liftoff with -d 3.0.
+        mhc:
+          dip:
+            lines:
+              - { chr: 6, hap: 0, start: 28466588, end: 33509373 }
+              - { chr: 6, hap: 1, start: 28463457, end: 33412240 }
+            provenance: >
+             This bed file was specified manually in the yaml config.
+             Coordinates were obtained by lifting KIR stratification from GRCh38 using liftoff with -d 3.0.
+      mappability:
+        unplaced_chr_patterns: ["^chr(MT|EBV)$"]
+    builds:
+      all:
+        chr_filter: []
+        include:
+          xy: true
+          kir: true
+          mhc: true
+        bigbed: true
+
+comparison_strats:
+  GRCh37_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-GRCh37@all.tar.gz
+  GRCh38_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-GRCh38@all.tar.gz
+  CHM13_v35: https://ftp-trace.ncbi.nlm.nih.gov/ReferenceSamples/giab/release/genome-stratifications/v3.5/genome-stratifications-CHM13@all.tar.gz
+
+benchmark_subsets:
+  - AllAutosomes
+  - AllTandemRepeats
+  - AllHomopolymers_ge7bp_imperfectge11bp_slop5
+  - AllTandemRepeats_201to10000bp_slop5
+  - AllTandemRepeats_51to200bp_slop5
+  - AllTandemRepeats_ge10001bp_slop5
+  - AllTandemRepeats_ge101bp_slop5
+  - AllTandemRepeats_le50bp_slop5
+  - SimpleRepeat_diTR_10to49_slop5
+  - SimpleRepeat_homopolymer_7to11_slop5
+  - SimpleRepeat_homopolymer_ge21_slop5
+  - SimpleRepeat_imperfecthomopolge11_slop5
+  - SimpleRepeat_imperfecthomopolge21_slop5
+  - SimpleRepeat_homopolymer_7to11_AT_slop5
+  - SimpleRepeat_homopolymer_ge21_AT_slop5
+  - SimpleRepeat_imperfecthomopolge11_AT_slop5
+  - SimpleRepeat_imperfecthomopolge21_AT_slop5
+  - SimpleRepeat_homopolymer_7to11_GC_slop5
+  - SimpleRepeat_homopolymer_ge21_GC_slop5
+  - SimpleRepeat_imperfecthomopolge11_GC_slop5
+  - SimpleRepeat_imperfecthomopolge21_GC_slop5
+  - alldifficultregions
+  - alllowmapandsegdupregions
+  - chrX_PAR
+  - chrX_XTR
+  - chrY_XTR
+  - notinalldifficultregions
+  - notinAllHomopolymers_ge7bp_imperfectge11bp_slop5
+  - notinAllTandemRepeatsandHomopolymers_slop5
+  - segdups
+
+malloc:
+  runHappy: 58000
