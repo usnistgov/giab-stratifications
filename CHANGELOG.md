@@ -1,6 +1,31 @@
 All updates are summarized here. For exact versions and provenance information,
 see the configuration file at `config/all.yml`.
 
+# 3.6
+
+## NEW - HG002 stratifications now for v1.1 Q100 assembly
+
+Previous iterations were based on the v1.0 assembly; these have now been updated
+to use the v1.1 assembly.
+
+Since this also slightly changed the coordinates, all the upstream dependencies
+also changed (inputs for segmental duplications, repeat masker, etc). See
+`config/all.yml.tmpl` for exact urls. XY PAR, KIR, MHC, and VDJ were all
+obtained by lifting from CHM13.
+
+## Other updates
+
+The upstream refseq regions CHM13 and GRCh37 were updated since the previous
+release, so the following stratifications changed by ~1kb and ~56kb
+respectively for the two references:
+
+* `Functional/GRCh37_notinrefseq_cds.bed.gz`
+* `Functional/GRCh37_refseq_cds.bed.gz`
+* `Functional/CHM13_notinrefseq_cds.bed.gz`
+* `Functional/CHM13_refseq_cds.bed.gz`
+
+See `validation/{CHM13,GRCh37}` for more details.
+
 # 3.5
 
 ## NEW - Better READMEs
