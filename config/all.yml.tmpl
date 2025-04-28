@@ -1,3 +1,5 @@
+version: 3.6
+
 haploid_stratifications:
   GRCh37:
     ref:
@@ -67,7 +69,7 @@ haploid_stratifications:
           bed:
             hap:
               url: https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/all_assembly_versions/GCF_000001405.25_GRCh37.p13/GCF_000001405.25_GRCh37.p13_genomic.gff.gz
-              md5: 2832fbf82812309349a82ebc681d1fdb
+              md5: 4f5c1eccaf85f44882e67f1cf2a76788
             chr_pattern:
               special:
                 1: NC_000001.10
@@ -362,7 +364,7 @@ haploid_stratifications:
           bed:
             hap:
               url: https://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Homo_sapiens/all_assembly_versions/GCF_009914755.1_T2T-CHM13v2.0/GCF_009914755.1_T2T-CHM13v2.0_genomic.gff.gz
-              md5: ef95051dbf2005a6269dd21399fe08db
+              md5: 55482d4eeaefe18581a6ff5899f47695
             chr_pattern:
               special:
                 1: NC_060925.1
@@ -451,10 +453,10 @@ diploid2_stratifications:
           bed:
             pat:
               url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/repeatmasker/hg002v1.1.paternal.bb
-              md5: 663f99f74d37bb5d5b6dc8a3aa76aefb
+              md5: 7a891afc699ccd605ea222f80f75aa32
             mat:
               url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/repeatmasker/hg002v1.1.maternal.bb
-              md5: 4c6e706adae8ac1036632aacc010bcb8
+              md5: 2cbd68bbe9f7377bddf08c938bb29478
           class_col: 3
         simreps:
           bed:
@@ -465,7 +467,7 @@ diploid2_stratifications:
           bed:
             dip:
               url: https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/HG002/assemblies/annotation/centromere/hg002v1.1_v2.0/hg002v1.1.cenSatv2.0.noheader.bb
-              md5: c5d81636255bcf1530345a1bcb9c41c5
+              md5: 9cb6a85a8743d25f2467d069e6f42b7b
           sat_col: 3
       # lifted off from CHM13 PAR from above
       xy:
@@ -487,10 +489,10 @@ diploid2_stratifications:
         cds:
           bed:
             pat:
-              url: https://ftp.ccb.jhu.edu/pub/data/hg002-q100/v0.2/hg002.v1.1.loff.v0.2.pat.gff.gz
+              url: ftp://ftp.ccb.jhu.edu/pub/data/hg002-q100/v0.2/hg002.v1.1.loff.v0.2.pat.gff.gz
               md5: e8c18dbdb95d034a8aebca90764bccdb
             mat:
-              url: https://ftp.ccb.jhu.edu/pub/data/hg002-q100/v0.2/hg002.v1.1.loff.v0.2.mat.gff.gz
+              url: ftp://ftp.ccb.jhu.edu/pub/data/hg002-q100/v0.2/hg002.v1.1.loff.v0.2.mat.gff.gz
               md5: 212caedca27e9bc322ba1393abbb8c44
           cds_params:
             source_match: null
